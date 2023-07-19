@@ -10,12 +10,23 @@ const scene = new THREE.Scene()
  * Objects
  */
 const geometry = new THREE.BoxGeometry(1, 1, 1)
-const material = new THREE.MeshBasicMaterial({ color: "blue" })
+const material = new THREE.MeshBasicMaterial({ color: "red" })
 const mesh = new THREE.Mesh(geometry, material)
 mesh.position.x = 0.7
 mesh.position.y = - 0.6
-mesh.position.z = 0.2
+mesh.position.z = 1
+
+//mesh.position.set(0.7, - 0.6, 1)...shortcut
+//console.log(mesh.position.normalize())...Normal position and vector object in devtool console
+//console.log(mesh.position.length())...1.3(square root of the sum of the squares of x, y and z?)
+
 scene.add(mesh)
+
+/**
+ * Axes Helper
+ */
+const axesHelper = new THREE.AxesHelper(2)
+scene.add(axesHelper)
 
 /**
  * Sizes
@@ -30,6 +41,7 @@ const sizes = {
  */
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
 camera.position.z = 3
+//console.log(mesh.position.distanceTo(camera.position))...2.202
 scene.add(camera)
 
 /**
