@@ -32,12 +32,20 @@ renderer.setSize(sizes.width, sizes.height)
 //renderer.render(scene, camera)
 
 /**
- * Animation along the y-axis
+ * Animation along the y-axis + Adaptation to the framerate(speed got faster as it now depends on time between last render and current not each computer's frame rate)
  */
 
+let time = Date.now()
+
 const tick = () => {
+
+	// Time
+    const currentTime = Date.now()
+    const deltaTime = currentTime - time
+    time = currentTime
+
     // Update objects
-    mesh.rotation.y += 0.01
+    mesh.rotation.y += 0.01 * deltaTime
 
     // Render
     renderer.render(scene, camera)
