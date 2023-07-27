@@ -32,7 +32,7 @@ renderer.setSize(sizes.width, sizes.height)
 //renderer.render(scene, camera)
 
 /**
- * Animation along the y-axis + Using Clock + Moving stuff using the POSITION property and MATH.SIN()
+ * Animation along the y-axis + Using Clock + Animating Object3D(e.g camera) using the POSITION property and MATH.SIN()
  */
 
 const clock = new THREE.Clock()
@@ -43,8 +43,9 @@ const tick = () => {
     const elapsedTime = clock.getElapsedTime()
 
     // Update objects
-    mesh.position.x =  Math.cos(elapsedTime) //(has it running in an ORBIT)
-    mesh.position.y =  Math.sin(elapsedTime)
+    camera.position.x =  Math.cos(elapsedTime) //(has animates the camera)
+    camera.position.y =  Math.sin(elapsedTime)
+    camera.lookAt(mesh.position)
 
     // Render
     renderer.render(scene, camera)
