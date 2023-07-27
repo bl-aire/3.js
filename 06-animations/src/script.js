@@ -32,7 +32,7 @@ renderer.setSize(sizes.width, sizes.height)
 //renderer.render(scene, camera)
 
 /**
- * Animation
+ * Animation along the y-axis
  */
 
 const tick = () => {
