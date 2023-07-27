@@ -32,20 +32,18 @@ renderer.setSize(sizes.width, sizes.height)
 //renderer.render(scene, camera)
 
 /**
- * Animation along the y-axis + Adaptation to the framerate(speed got faster as it now depends on time between last render and current not each computer's frame rate)
+ * Animation along the y-axis + Adaptation to the framerate(using Clock - a builtin Three.js solution)
  */
 
-let time = Date.now()
+const clock = new THREE.Clock()
 
 const tick = () => {
 
 	// Time
-    const currentTime = Date.now()
-    const deltaTime = currentTime - time
-    time = currentTime
+    const elapsedTime = clock.getElapsedTime()
 
     // Update objects
-    mesh.rotation.y += 0.01 * deltaTime
+    mesh.rotation.y =  elapsedTime //(+= has it running REALLY FAST)
 
     // Render
     renderer.render(scene, camera)
