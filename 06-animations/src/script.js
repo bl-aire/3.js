@@ -32,7 +32,7 @@ renderer.setSize(sizes.width, sizes.height)
 //renderer.render(scene, camera)
 
 /**
- * Animation along the y-axis + Adaptation to the framerate(using Clock - a builtin Three.js solution)
+ * Animation along the y-axis + Using Clock + Moving stuff using the POSITION property and MATH.SIN()
  */
 
 const clock = new THREE.Clock()
@@ -43,7 +43,8 @@ const tick = () => {
     const elapsedTime = clock.getElapsedTime()
 
     // Update objects
-    mesh.rotation.y =  elapsedTime //(+= has it running REALLY FAST)
+    mesh.position.x =  Math.cos(elapsedTime) //(has it running in an ORBIT)
+    mesh.position.y =  Math.sin(elapsedTime)
 
     // Render
     renderer.render(scene, camera)
