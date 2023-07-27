@@ -56,3 +56,31 @@ const tick = () => {
 }
 
 tick()
+
+/**
+ * USING  A LIBRARY E.G GSAP
+ */
+
+/**
+ * npm install --save gsap@3.5.1
+ * 
+ 
+import './style.css'
+import * as THREE from 'three'
+import gsap from 'gsap'
+
+const clock = new THREE.Clock()
+
+const tick = () =>
+{
+    const elapsedTime = clock.getElapsedTime()
+
+    // Update objects
+    mesh.rotation.y = elapsedTime
+
+    // ...
+}
+
+tick()
+
+*/
