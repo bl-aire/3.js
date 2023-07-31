@@ -12,6 +12,18 @@ const sizes = {
     height: 600
 }
 
+// Cursor
+const cursor = {
+    x: 0,
+    y: 0
+}
+
+window.addEventListener('mousemove', (event) => {
+    cursor.x = event.clientX / sizes.width - 0.5
+    cursor.y = - (event.clientY / sizes.height - 0.5)
+    //mouse position is stored in cursor( 0 = center, -0.5 = far left, 0.5 = far right)
+})
+
 // Scene
 const scene = new THREE.Scene()
 
@@ -42,18 +54,6 @@ const renderer = new THREE.WebGLRenderer({
 })
 renderer.setSize(sizes.width, sizes.height)
 
-// Cursor
-const cursor = {
-    x: 0,
-    y: 0
-}
-
-window.addEventListener('mousemove', (event) => {
-    cursor.x = event.clientX /sizes.width - 0.5
-    cursor.x = - (event.clientY /sizes.height - 0.5)
-
-    console.log(cursor.x, cursor.y) //mouse position is stored in cursor( 0 = center, -0.5 = far left, 0.5 = far right)
-})
 
 // Animate
 const clock = new THREE.Clock()
@@ -66,8 +66,9 @@ const tick = () =>
     //mesh.rotation.y = elapsedTime;
 
     //Update camera
-    camera.position.x = cursor.x
-    camera.position.y = cursor.y
+    camera.position.x = cursor.x * 5
+    camera.position.y = cursor.y * 5
+    camera.lookAt(mesh.position)
 
     // Render
     renderer.render(scene, camera)
