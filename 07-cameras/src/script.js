@@ -50,7 +50,7 @@ const cursor = {
 
 window.addEventListener('mousemove', (event) => {
     cursor.x = event.clientX /sizes.width - 0.5
-    cursor.x = event.clientY /sizes.height - 0.5
+    cursor.x = - (event.clientY /sizes.height - 0.5)
 
     console.log(cursor.x, cursor.y) //mouse position is stored in cursor( 0 = center, -0.5 = far left, 0.5 = far right)
 })
