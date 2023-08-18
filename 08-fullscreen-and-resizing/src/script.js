@@ -41,6 +41,34 @@ window.addEventListener('resize', () => {
 })
 
 /**
+ * SET A TRIGGER(Double click) TO GO INTO || LEAVE FULLSCREEN MODE
+ */
+
+window.addEventListener('dblclick', () => {
+    const fullscreenElement = document.fullscreenElement || document.webkitFullscreenElement
+
+    // fullscreenElement property returns the current element that is displayed in fullscreen mode, or null when not in fullscreen.
+
+    if(!fullscreenElement){
+        if(canvas.requestFullscreen) {
+            canvas.requestFullscreen()
+        } else if (canvas.webkitFullscreen) {
+            canvas.webkitFullscreen()
+        }
+    }
+    else {
+        if(document.exitFullscreen)
+        {
+            document.exitFullscreen()
+        }
+        else if(document.webkitExitFullscreen)
+        {
+            document.webkitExitFullscreen()
+        }
+    }
+})
+
+/**
  * Camera
  */
 // Base camera
