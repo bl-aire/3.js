@@ -1,4 +1,6 @@
 import * as THREE from 'three'
+import './style.css'
+import gsap from 'gsap'
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -33,7 +35,9 @@ renderer.setSize(sizes.width, sizes.height)
 
 /**
  * Animation along the y-axis + Using Clock + Animating Object3D(e.g camera) using the POSITION property and MATH.SIN()
- */
+ *
+
+
 
 const clock = new THREE.Clock()
 
@@ -43,9 +47,16 @@ const tick = () => {
     const elapsedTime = clock.getElapsedTime()
 
     // Update objects
-    camera.position.x =  Math.cos(elapsedTime) //(has animates the camera)
+
+    camera.position.x =  Math.cos(elapsedTime) //(animates the camera)
     camera.position.y =  Math.sin(elapsedTime)
     camera.lookAt(mesh.position)
+
+    //mesh.rotation.y = elapsedTime
+    //mesh.rotation.x = elapsedTime
+
+    //mesh.position.x = Math.cos(elapsedTime)
+    //mesh.position.y = Math.sin(elapsedTime)
 
     // Render
     renderer.render(scene, camera)
@@ -56,6 +67,7 @@ const tick = () => {
 }
 
 tick()
+/
 
 /**
  * USING  A LIBRARY E.G GSAP
@@ -63,24 +75,27 @@ tick()
 
 /**
  * npm install --save gsap@3.5.1
- * 
+ */
  
-import './style.css'
-import * as THREE from 'three'
-import gsap from 'gsap'
 
-const clock = new THREE.Clock()
 
-const tick = () =>
+gsap.to(mesh.rotation, //camera.position, mesh.position
+    { 
+        duration: 5,
+        delay: 1, 
+        y:2,
+        x:2
+    }
+)
+
+const gsapTick = () =>
 {
-    const elapsedTime = clock.getElapsedTime()
+        // Render
+        renderer.render(scene, camera)
 
-    // Update objects
-    mesh.rotation.y = elapsedTime
-
-    // ...
+        // Call tick again on the next frame
+        window.requestAnimationFrame(gsapTick)
 }
 
-tick()
+gsapTick()
 
-*/
