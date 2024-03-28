@@ -37,8 +37,6 @@ renderer.setSize(sizes.width, sizes.height)
  * Animation along the y-axis + Using Clock + Animating Object3D(e.g camera) using the POSITION property and MATH.SIN()
  *
 
-
-
 const clock = new THREE.Clock()
 
 const tick = () => {
